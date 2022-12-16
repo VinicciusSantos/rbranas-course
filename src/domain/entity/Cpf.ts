@@ -6,7 +6,7 @@ export default class Cpf {
         this.value = value;
     }
 
-    private validate(cpf: string){
+    private validate(cpf: string): boolean {
         if (!cpf) return false;
         cpf = this.clean(cpf);
         if (!this.hasMinimumLenght(cpf)) return false;
@@ -18,7 +18,7 @@ export default class Cpf {
         return actualdigit === calculatedDigit;
     }
 
-    private calculateDigit(cpf: string, factor: number) {
+    private calculateDigit(cpf: string, factor: number): number {
         let total = 0;
         for (const digit of cpf) {
             if (factor > 1) total += parseInt(digit) * factor--;

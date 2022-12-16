@@ -3,6 +3,6 @@ export default class PlaceOrderInput {
         readonly cpf: string,
         readonly orderItems: { idItem: number, quantity: number }[],
         readonly date: Date,
-        readonly coupon: string
+        readonly coupon?: string
     ) {}
 }
