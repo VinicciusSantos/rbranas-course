@@ -1,33 +1,23 @@
 import PlaceOrder from "../../src/application/usecase/place_order/PlaceOrder";
-import CouponRepository from "../../src/domain/repository/CouponRepository";
-import ItemRepository from "../../src/domain/repository/ItemRepository";
 import OrderRepository from "../../src/domain/repository/OrderRepository";
 import PgPromiseConnectionAdapter from "../../src/infra/database/PgPromiseConnectionAdapter";
-import CouponRepositoryDatabase from "../../src/infra/repository/database/CouponRepositoryDatabase";
-import ItemRepositoryDatabase from "../../src/infra/repository/database/ItemRepositoryDatabase";
+import DatabaseRepositoryFactory from "../../src/infra/factory/DatabaseRepositoryFactory";
 import OrderRepositoryDatabase from "../../src/infra/repository/database/OrderRepositoryDatabase";
 
-let itemRepository: ItemRepository;
 let orderRepository: OrderRepository;
-let couponRepository: CouponRepository;
 let placeOrder: PlaceOrder;
-let connection = new PgPromiseConnectionAdapter()
+let connection = new PgPromiseConnectionAdapter();
 
 beforeEach(() => {
-  itemRepository = new ItemRepositoryDatabase(connection);
-  orderRepository = new OrderRepositoryDatabase(connection);
-  couponRepository = new CouponRepositoryDatabase(connection);
-
-  placeOrder = new PlaceOrder(
-    itemRepository,
-    orderRepository,
-    couponRepository
-  );
+  orderRepository = new OrderRepositoryDatabase(connection); 
+  const repositoryFactory = new DatabaseRepositoryFactory(connection);
+  // const repositoryFactory = new MemoryRepositoryFactory()
+  placeOrder = new PlaceOrder(repositoryFactory);
 });
 
 afterEach(async () => {
-  await orderRepository.clear()
-})
+  await orderRepository.clear();
+});
 
 test("deve fazer um pedido", async () => {
   const input = {

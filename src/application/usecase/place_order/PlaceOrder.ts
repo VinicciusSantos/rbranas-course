@@ -1,17 +1,22 @@
 import Order from "../../../domain/entity/Order";
-import ItemRepository from "../../../domain/repository/ItemRepository";
-import OrderRepository from "../../../domain/repository/OrderRepository";
-import CouponRepository from "../../../domain/repository/CouponRepository"
 import PlaceOrderInput from "./PlaceOrderInput";
 import PlaceOrderOutput from "./PlaceOrderOutput";
 import DefaultFreightCalculator from "../../../domain/entity/DefaultFreightCalculator";
+import RepositoryFactory from "../../../domain/factory/RepositoryFactory";
+import ItemRepository from "../../../domain/repository/ItemRepository";
+import CouponRepository from "../../../domain/repository/CouponRepository";
+import OrderRepository from "../../../domain/repository/OrderRepository";
 
-export default class PlaceOrder {
-  constructor(
-    readonly itemRepository: ItemRepository,
-    readonly orderRepository: OrderRepository,
-    readonly couponRepository: CouponRepository
-  ) {}
+export default class PlaceOrder { 
+  itemRepository: ItemRepository;
+  couponRepository: CouponRepository;
+  orderRepository: OrderRepository;
+
+  constructor(readonly repositoryFactory: RepositoryFactory) {
+    this.itemRepository = repositoryFactory.createItemRepository()
+    this.couponRepository = repositoryFactory.createCouponRepository()
+    this.orderRepository = repositoryFactory.createOrderRepository()
+  }
 
   async execute(input: PlaceOrderInput): Promise<PlaceOrderOutput> {
     const sequence = await this.orderRepository.count() +1
