@@ -5,7 +5,7 @@ export default class PgPromiseConnectionAdapter implements Connection {
     pgp: any;
 
     constructor () {
-        this.pgp = pgp()("postgres://umtwzsda:UGR41HPAU8yMuHplEe0bLwqTKF1EJtTF@motty.db.elephantsql.com/umtwzsda")
+        this.pgp = pgp()("postgres://brisa:brisanet@localhost:5432/postgres")
     }
 
     query(statement: string, params?: any[]): Promise<any> {

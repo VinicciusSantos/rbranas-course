@@ -1,7 +1,7 @@
-drop schema ccca cascade;
-create schema ccca;
+drop schema public cascade;
+create schema public;
 
-create table ccca.item (
+create table public.item (
   id_item serial primary key,
   category text,
   description text,
@@ -12,24 +12,24 @@ create table ccca.item (
   weight integer
 );
 
-insert into ccca.item (id_item, category, description, price, width, height, length, weight) values (1, 'Music', 'CD', 30, 30, 30, 10, 0.5);
-insert into ccca.item (id_item, category, description, price, width, height, length, weight) values (2, 'Video', 'DVD', 50, 40, 20, 10, 0.5);
-insert into ccca.item (id_item, category, description, price, width, height, length, weight) values (3, 'Video', 'VHD', 10, 40, 20, 10, 0.5);
-insert into ccca.item (id_item, category, description, price, width, height, length, weight) values (4, 'Musical Instruments', 'Guitar', 1000, 100, 30, 10, 3);
-insert into ccca.item (id_item, category, description, price, width, height, length, weight) values (5, 'Musical Instruments', 'Amplifier', 5000, 100, 50, 50, 20);
-insert into ccca.item (id_item, category, description, price, width, height, length, weight) values (6, 'Accessories', 'Cable', 30, 10, 10, 10, 0.9);
+insert into public.item (id_item, category, description, price, width, height, length, weight) values (1, 'Music', 'CD', 30, 30, 30, 10, 0.5);
+insert into public.item (id_item, category, description, price, width, height, length, weight) values (2, 'Video', 'DVD', 50, 40, 20, 10, 0.5);
+insert into public.item (id_item, category, description, price, width, height, length, weight) values (3, 'Video', 'VHD', 10, 40, 20, 10, 0.5);
+insert into public.item (id_item, category, description, price, width, height, length, weight) values (4, 'Musical Instruments', 'Guitar', 1000, 100, 30, 10, 3);
+insert into public.item (id_item, category, description, price, width, height, length, weight) values (5, 'Musical Instruments', 'Amplifier', 5000, 100, 50, 50, 20);
+insert into public.item (id_item, category, description, price, width, height, length, weight) values (6, 'Accessories', 'Cable', 30, 10, 10, 10, 0.9);
 
-create table ccca.coupon (
+create table public.coupon (
   code text,
   percentage numeric,
   expire_date timestamp,
   primary key (code)
 );
 
-insert into ccca.coupon (code, percentage, expire_date) values ('VALE20', 20, '2023-10-10T10:00:00');
-insert into ccca.coupon (code, percentage, expire_date) values ('VALE20_EXPIRED', 20, '2020-10-10T10:00:00');
+insert into public.coupon (code, percentage, expire_date) values ('VALE20', 20, '2023-10-10T10:00:00');
+insert into public.coupon (code, percentage, expire_date) values ('VALE20_EXPIRED', 20, '2020-10-10T10:00:00');
 
-create table ccca.order (
+create table public.order (
   id_order serial,
   coupon text,
   code text,
@@ -41,7 +41,7 @@ create table ccca.order (
   primary key (id_order)
 );
 
-create table ccca.order_item (
+create table public.order_item (
   id_order integer,
   id_item integer,
   price numeric,
@@ -49,13 +49,11 @@ create table ccca.order_item (
   primary key (id_order, id_item)
 );
 
-create table ccca.stock_entry (
+create table public.stock_entry (
   id_stock_entry serial,
   id_item integer,
   operation text,
   quantity integer,
   date timestamp,
   primary key (id_stock_entry)
-)
-
-select * from ccca.order_item
+);
