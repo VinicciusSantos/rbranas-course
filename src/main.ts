@@ -1,3 +1,4 @@
+import OrderDAODatabase from "./infra/dao/orderDAODatabase";
 import PgPromiseConnectionAdapter from "./infra/database/PgPromiseConnectionAdapter";
 import DatabaseRepositoryFactory from "./infra/factory/DatabaseRepositoryFactory";
 import ExpressAdapter from "./infra/http/ExpressAdapter";
@@ -7,6 +8,9 @@ const expressAdapter = new ExpressAdapter();
 
 const connection = new PgPromiseConnectionAdapter();
 const repositoryFactory = new DatabaseRepositoryFactory(connection);
-new RouteConfig(expressAdapter, repositoryFactory)
+
+const OrderDAO = new OrderDAODatabase(connection)
+
+new RouteConfig(expressAdapter, repositoryFactory, OrderDAO)
 
 expressAdapter.listen(3000);

@@ -5,7 +5,7 @@
   "main": "src/main.ts",
   "scripts": {
     "main": "tsc && node ./dist/src/main",
-    "test": "tsc && jest ./dist --forceExit",
+    "test": "tsc && jest ./dist",
     "coverage": "tsc && jest ./dist --coverage --forceExit"
   },
   "repository": {
