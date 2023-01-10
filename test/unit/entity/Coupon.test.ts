@@ -1,4 +1,4 @@
-import Coupon from "../../src/domain/entity/Coupon";
+import Coupon from "../../../src/domain/entity/Coupon";
 const today = new Date("2022-12-15");
 
 test("Deve criar um cupom de desconto valido", function () {

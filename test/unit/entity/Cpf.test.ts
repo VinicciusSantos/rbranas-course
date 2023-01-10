@@ -1,4 +1,4 @@
-import Cpf from "../../src/domain/entity/Cpf"
+import Cpf from "../../../src/domain/entity/Cpf"
 
 describe('CPF Validation', () => {
   it('should validate the cpf A', () => {
