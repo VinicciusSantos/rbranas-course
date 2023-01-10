@@ -1,7 +1,7 @@
 import axios from "axios";
-import PlaceOrder from "../../src/application/usecase/place_order/PlaceOrder";
-import PgPromiseConnectionAdapter from "../../src/infra/database/PgPromiseConnectionAdapter";
-import DatabaseRepositoryFactory from "../../src/infra/factory/DatabaseRepositoryFactory";
+import PlaceOrder from "../../../src/application/usecase/place_order/PlaceOrder";
+import PgPromiseConnectionAdapter from "../../../src/infra/database/PgPromiseConnectionAdapter";
+import DatabaseRepositoryFactory from "../../../src/infra/factory/DatabaseRepositoryFactory";
 
 let connection = new PgPromiseConnectionAdapter();
 let repositoryFactory = new DatabaseRepositoryFactory(connection)
