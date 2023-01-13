@@ -2,6 +2,7 @@ import OrderDAO from "../../application/dao/OrderDAO";
 import SimulateFreight from "../../application/usecase/simulate_freight/SimulateFreight";
 import DefaultFreightCalculator from "../../domain/entity/DefaultFreightCalculator";
 import RepositoryFactory from "../../domain/factory/RepositoryFactory";
+import GetItemsController from "../controller/GetItemsController";
 import GetOrderController from "../controller/GetOrderController";
 import GetOrdersController from "../controller/GetOrdersController";
 import PlaceOrderController from "../controller/PlaceOrderController";
@@ -35,6 +36,11 @@ export default class RouteConfig {
     http.on("/orders/:code", "get", async function (params: any, body: any) {
       const getOrderController = new GetOrderController(orderDao);
       return getOrderController.execute(params, body);
+    });
+
+    http.on("/items", "get", async function (params: any, body: any) {
+      const getItemsController = new GetItemsController(repositoryFactory);
+      return getItemsController.execute(params, body);
     });
   }
 }

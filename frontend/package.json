@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "jest"
+	"test": "jest"
   },
   "dependencies": {
     "axios": "^0.25.0",
@@ -25,7 +25,20 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0"
   },
-  "eslintConfig": {},
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",

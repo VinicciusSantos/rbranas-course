@@ -1,5 +1,5 @@
-export default class OrderService {
 
+export default class OrderService {
 	constructor (apiService, data) {
 		this.data = data;
 
@@ -56,7 +56,8 @@ export default class OrderService {
 
 		this.data.getItems = async () => {
 			const response = await apiService.getItems();
-			this.data.items = response.data;
+			this.data.items = response.data.items;
+			console.log("🚀 ~ file: OrderService.js:60 ~ OrderService ~ this.data.getItems= ~ response.data", response.data)
 			this.data.itemsIndex = {};
 			for (const item of this.data.items) {
 				this.data.itemsIndex[item.idItem] = item;

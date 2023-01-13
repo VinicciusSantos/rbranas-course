@@ -1,5 +1,6 @@
 import express from "express";
 import Http from "./Http";
+import cors from "cors"
 
 export default class ExpressAdapter implements Http {
   app: any;
@@ -7,6 +8,7 @@ export default class ExpressAdapter implements Http {
   constructor() {
     this.app = express();
     this.app.use(express.json());
+    this.app.use(cors())
   }
 
   on(url: string, method: string, fn: any): void {
